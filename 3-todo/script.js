@@ -40,13 +40,14 @@ function getVisibleTasks() {
 }
 
 function updateCounter() {
-  counter.textContent = "Активных задач: " + tasks.length;
+  let currentCounter = tasks.filter((t) => !t.done).length;
+  counter.textContent = "Активных задач: " + currentCounter;
 }
 
 function render() {
   const visible = getVisibleTasks();
   list.innerHTML = "";
-  for (let i = 0; i <= visible.length; i++) {
+  for (let i = 0; i < visible.length; i++) {
     const task = visible[i];
     const li = document.createElement("li");
     li.className = "task";
