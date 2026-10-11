@@ -93,11 +93,11 @@ function renderCart() {
     const li = document.createElement("li");
     li.className = "cart-item";
     li.innerHTML = `<span>${item.name}</span>
-      <button class="qty-btn" data-act="dec">−</button>
-      <span class="qty">${item.qty}</span>
-      <button class="qty-btn" data-act="inc">+</button>
-      <span class="line">${lineTotal} ₽</span>
-      <button class="remove">✕</button>`;
+    <button class="qty-btn" data-act="dec">−</button>
+    <span class="qty">${item.qty}</span>
+    <button class="qty-btn" data-act="inc">+</button>
+    <span class="line">${lineTotal} ₽</span>
+    <button class="remove">✕</button>`;
     li.querySelector('[data-act="inc"]').addEventListener("click", () =>
       increaseQty(item.id),
     );
@@ -114,8 +114,9 @@ function renderCart() {
   if (discount) {
     total = total - total * discount;
   }
-
-  badgeEl.textContent = cart.length;
+  let currentCaunt = 0;
+  cart.forEach((el) => (currentCaunt += el.qty));
+  badgeEl.textContent = currentCaunt;
   totalEl.textContent = total;
   emptyMsg.hidden = true;
 }
