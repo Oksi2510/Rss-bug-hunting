@@ -32,15 +32,20 @@ function renderProducts() {
 
 function addToCart(id) {
   const product = products.find((p) => p.id === id);
+  const findEl = cart.find((el) => el.id === id);
   if (!product) {
     return;
   }
-  cart.push({
-    id: product.id,
-    name: product.name,
-    price: product.price,
-    qty: 1,
-  });
+  if (findEl) {
+    findEl.qty += 1;
+  } else {
+    cart.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      qty: 1,
+    });
+  }
   renderCart();
 }
 
