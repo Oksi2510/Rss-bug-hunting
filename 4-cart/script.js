@@ -37,7 +37,9 @@ function addToCart(id) {
     return;
   }
   if (findEl) {
+    const currentProduct = products.find((i) => i.id === id);
     findEl.qty += 1;
+    findEl.price += currentProduct.price;
   } else {
     cart.push({
       id: product.id,
@@ -106,7 +108,7 @@ function renderCart() {
       removeItem(item.id),
     );
     cartItemsEl.appendChild(li);
-    total += item.price * item.qty;
+    total = +total + item.price;
   });
 
   if (discount) {
